@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Darsh Patel — Robotics & Autonomous Systems</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0B1120;
+      --surface:   #131C30;
+      --border:    #1E2D45;
+      --text:      #CBD5E1;
+      --heading:   #F1F5F9;
+      --accent:    #38BDF8;
+      --accent2:   #0EA5E9;
+      --muted:     #64748B;
+      --card-bg:   #111827;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Lora', Georgia, serif;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(11, 17, 32, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--heading);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #about {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 3rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      gap: 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text { flex: 1; }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      font-weight: 800;
+      color: var(--heading);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-bio {
+      font-size: 1rem;
+      color: var(--text);
+      max-width: 520px;
+      margin-bottom: 2rem;
+    }
+
+    .social-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      background: var(--surface);
+      transition: all 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .social-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.05);
+    }
+    .social-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    .hero-photo {
+      flex-shrink: 0;
+      width: 280px;
+    }
+    .hero-photo-wrap {
+      position: relative;
+      width: 260px;
+      height: 260px;
+    }
+    .hero-photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, transparent 60%);
+    }
+    .hero-photo-wrap img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--bg);
+    }
+    .hero-interests {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── SECTION LAYOUT ── */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+    }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--heading);
+      letter-spacing: -0.02em;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── PROJECT CARDS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+      background: var(--surface);
+    }
+
+    .card-body {
+      padding: 1.25rem 1.5rem 1.5rem;
+    }
+
+    .card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--heading);
+      line-height: 1.35;
+      margin-bottom: 0.6rem;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: gap 0.2s;
+    }
+    .card-link:hover { gap: 0.6rem; }
+    .card-link svg { width: 13px; height: 13px; }
+
+    /* ── RESEARCH ITEMS ── */
+    .research-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .research-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      gap: 0;
+      transition: border-color 0.25s;
+    }
+    .research-item:hover { border-color: rgba(56, 189, 248, 0.4); }
+
+    .research-img {
+      width: 200px;
+      flex-shrink: 0;
+      object-fit: cover;
+      display: block;
+    }
+
+    .research-body {
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .research-type {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .research-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--heading);
+      line-height: 1.35;
+      margin-bottom: 0.25rem;
+    }
+
+    .research-org {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+
+    .research-desc {
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact-section {
+      text-align: center;
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-card p {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .contact-card .location {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.85rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.05em;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-text > * {
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-tag    { animation-delay: 0.0s; }
+    .hero-name   { animation-delay: 0.1s; }
+    .hero-title  { animation-delay: 0.2s; }
+    .hero-bio    { animation-delay: 0.3s; }
+    .social-row  { animation-delay: 0.4s; }
+    .hero-photo  { animation: fadeUp 0.7s 0.2s ease both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.25rem; }
+      #about { flex-direction: column-reverse; padding: 7rem 1.5rem 3rem; gap: 2rem; }
+      .hero-photo { width: 100%; display: flex; justify-content: center; }
+      .hero-photo-wrap { width: 200px; height: 200px; }
+      section { padding: 3.5rem 1.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .research-item { flex-direction: column; }
+      .research-img { width: 100%; height: 180px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#about">Darsh<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO / ABOUT -->
+  <div id="about">
+    <div class="hero-text">
+      <div class="hero-tag">M.S. Robotics &amp; Autonomous Systems</div>
+      <h1 class="hero-name">Darsh P.<br>Patel</h1>
+      <p class="hero-title">Arizona State University</p>
+      <p class="hero-bio">
+        Versatile engineer with expertise in embedded systems, computer vision, and autonomous navigation. My work spans real-time motion capture, multi-robot coordination, and autonomous vehicles — bridging hardware and software to build intelligent systems that operate in the real world.
+      </p>
+      <p class="hero-bio" style="margin-top:-1rem;">
+        Off the clock: competing in basketball at national level, shredding slopes on a snowboard, and leading complex team projects.
+      </p>
+      <div class="social-row">
+        <a class="social-btn" href="https://github.com/darsh1406" target="_blank" rel="noopener">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0z"/></svg>
+          GitHub
+        </a>
+        <a class="social-btn" href="https://www.linkedin.com/in/darshptl" target="_blank" rel="noopener">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46C23.21 24 24 23.23 24 22.27V1.73C24 .77 23.21 0 22.23 0z"/></svg>
+          LinkedIn
+        </a>
+        <a class="social-btn" href="https://drive.google.com/file/d/1F9Lcnyf5wn0KbA-dvDjhnf8RyTfA1b9Y/view?usp=drive_link" target="_blank" rel="noopener">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+          Resume
+        </a>
+        <a class="social-btn" href="mailto:darshp1406@gmail.com">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email
+        </a>
+        <a class="social-btn" href="https://www.instagram.com/darsh1406" target="_blank" rel="noopener">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          Instagram
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      <div class="hero-photo-wrap">
+        <img
+          src="https://lh3.googleusercontent.com/sitesv/APaQ0SSgFTYk0_7gj0e5OmOj9CNofvTszuwsR3lVDPVbWz2g8Vq7GlfxjbogGegLkvHUAwURNaiTuXI6OVgBfUYXAw_1HYJu9D0IV_aNUUCIPpLqdGjACsHpjUFhumlMzT9jDtlfZKZLshyt8jYYmCnMhXg5SZebPQwl_A4r_Q_f49rWNdVFgf3ZAVz1dtt89Y4Xz60ZDCll_lnYh5w6vLVXTUfla3zwXxkm0lcr=w400"
+          alt="Darsh Patel"
+          onerror="this.style.display='none'"
+        />
+      </div>
+      <p class="hero-interests">🏀 Basketball · 🏂 Snowboarding · 🤖 Robotics</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header">
+      <div class="section-label">Work</div>
+      <h2 class="section-title">Projects</h2>
+    </div>
+
+    <div class="projects-grid">
+
+      <div class="card">
+        <img class="card-img" src="https://lh3.googleusercontent.com/sitesv/APaQ0SSUD0oEuk5X7fHuEJ7o_ZwiEQ9HKbg_ekg8Pq59y7Yq3bMm4_rWS2j7G8ZUokFnSFYOZUPZgUt4wkboZTvtEHfOy1HMsppKQArvN1V0JABuWSJoRlB3YFzsgHCHrsqZ2E6mmJked_--luiEWueXnUPB5REzGn2GlHFf8I-Llgg1_mRHOS_JfJRV_y6HQ9lrJu7QfHfqtXasPCIdiYw3tl_UTYFBsTkfZxBwkTM=w640" alt="Autonomous Warehouse Management System" onerror="this.style.background='#1E2D45'" />
+        <div class="card-body">
+          <h3 class="card-title">Autonomous Warehouse Management System</h3>
+          <p class="card-desc">Led a cross-disciplinary team building an end-to-end system where sensor-less mobile robots autonomously pick and deliver packages, orchestrated by a centralized navigation framework. Earned top-10 out of 9,000 teams at Flipkart Grid 3.0.</p>
+          <a class="card-link" href="https://sites.google.com/asu.edu/darshptl/projects/autonomous-warehouse-management-system" target="_blank" rel="noopener">
+            Read More
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="https://lh3.googleusercontent.com/sitesv/APaQ0SSNafROZpu2heg_IiD2Fqz2VXQOlObMs9dfQsnJfuoD1TC-hYkB0TmMjIJvFAGBfbkU1hWRHnwu0ZT8s1KfaqnUHxatc8DQLcEo7n_0mu4Pc0UODFJsRoebjQT4CEMYz9CE8IiSD8knauFjHh14OrhY0ugnkWyjlzzpAunySiGEEfxwzn-syUexPT8rc9Aw0BhQIg8MJV8K-upE4V3OnHLzx-pSxKkxkrwNFXs=w640" alt="Autonomous Maze Navigation" onerror="this.style.background='#1E2D45'" />
+        <div class="card-body">
+          <h3 class="card-title">Autonomous Maze Navigation with 6DOF Robotic Arm</h3>
+          <p class="card-desc">End-to-end maze-solving system combining a digital twin, computer vision, path-planning, and real-world execution using a MyCobot Pro 600. Seamlessly integrates MATLAB-based kinematic simulation with Python-driven control.</p>
+          <a class="card-link" href="https://sites.google.com/asu.edu/darshptl/projects/autonomous-maze-navigation-with-6dof-robotic-arm" target="_blank" rel="noopener">
+            Read More
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="https://lh3.googleusercontent.com/sitesv/APaQ0SSviGY3xz7-_hNCxQiT3GQCa9QSg0MCyxwHYPBlbxtLc1yoICYi327DutY0-FQQlJWUI9ItG2RWoE_2CMgeBWxd37KWNhkxYg-Vq68ycI9S2VR7RVOXXz_Y7wRDqy9gZtIizMMSGZZxHjYnUHI3i_n3sgWR2o8zVY901gUOduraS8vCnPqekoHfE1PMwDtQONXGramSlcX2CjUhabwkQMS8BMFswzb4DJP5LAo=w640" alt="Dynamic Swarm Robotics" onerror="this.style.background='#1E2D45'" />
+        <div class="card-body">
+          <h3 class="card-title">Dynamic Swarm Robotics for Sustaining Natural Environments</h3>
+          <p class="card-desc">Fully decentralized swarm system using triangular-lattice formations and multi-force interaction — cohesion, alignment, repulsion, and obstacle avoidance — for robust coordinated navigation in complex environments.</p>
+          <a class="card-link" href="https://sites.google.com/asu.edu/darshptl/projects/dynamic-swarm-robotics-for-sustaining-natural-environments" target="_blank" rel="noopener">
+            Read More
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="https://lh3.googleusercontent.com/sitesv/APaQ0SSug-RR3XhjpTYNB3jaqVqoXzUr7N6IUl4NbBAzOFEjxep3OSr5JYSIw_7NvOh_ZtpXbotsHjHmOQE98y5BHGm3wVrrjiQaYuu8WtbK7pA8haUElpSAMwpdgRMmHZKQtkyUcUfZkPGJ1ha81YtzeHl8ibTS24KCxq8ZuSKCq9TtYfFQAtRLxmcc16u8oeIHQmPWjIY64I1XJLLlrkfgbzC2puc71ZI7MwaLw-s=w640" alt="MASt3R-SLAM Loop Closure" onerror="this.style.background='#1E2D45'" />
+        <div class="card-body">
+          <h3 class="card-title">MASt3R-SLAM Loop Closure — L1 vs L2 Similarity</h3>
+          <p class="card-desc">Investigated appearance-based loop-closure in visual SLAM by comparing L1 and L2 similarity metrics on high-dimensional image descriptors, targeting improved real-time performance without sacrificing trajectory accuracy.</p>
+          <a class="card-link" href="https://sites.google.com/asu.edu/darshptl/projects/mast3r-slam-loop-closure-l1-vs-l2-similarity" target="_blank" rel="noopener">
+            Read More
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="https://lh3.googleusercontent.com/sitesv/APaQ0SQk-VPIb6DrDIQWUyHbowCPkhqt42IbJ9cflXDZE0Z8QLSypUrNkmqGe-DmP8bSiwMqGezJC8qqO26S_JEeI2U-V6WrgKfhRi5Jty3j9LLVMS_Vvm4v-rDbt7pqHNAfW2WIVMCz77Hr56hkTqOy3YMXXYrK78u7lEqj1xpJ6KqrHE7MoSPyejel0ldvBj_pqpc3dNyRymB4WYcQPy53I376HgCMqXf35X7nAdg=w640" alt="Self-Attention U-Net" onerror="this.style.background='#1E2D45'" />
+        <div class="card-body">
+          <h3 class="card-title">Advanced Semantic Segmentation with Self-Attention U-Net</h3>
+          <p class="card-desc">U-Net architecture with MobileNetV2 encoder backbone. Skip connections feed into a self-attention module in the decoder, followed by upsampling, max-pooling, and convolutional layers for precise scene understanding.</p>
+          <a class="card-link" href="https://sites.google.com/asu.edu/darshptl/projects/advanced-sematic-segmentation-with-self-attention-u-net-architecture" target="_blank" rel="noopener">
+            Read More
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- RESEARCH -->
+  <section id="research">
+    <div class="section-header">
+      <div class="section-label">Academia</div>
+      <h2 class="section-title">Research</h2>
+    </div>
+
+    <div class="research-list">
+
+      <div class="research-item">
+        <img class="research-img" src="https://lh3.googleusercontent.com/sitesv/APaQ0SRTobjvVZZ8RaF4fdccBPpk8nvy4mgjatj9nih5e55mt1KRSLxFBdm54iSfkvf8UhVIpayhc2CD0MC19vtNHHGhGrwXqX-Yydyt8eyhYGmGeyxv5BOblDMv93uqP3t_fNhf0kElVokGTbfNZtQfX_9uVWgx012e0nOvKkZjqgXO7n2oLctM9D1-OxYzUetjAXkoWKHxRRYzid2ousgb2uPvXeYg5P13OdA7k=w400" alt="Graduate Research" onerror="this.style.display='none'" />
+        <div class="research-body">
+          <p class="research-type">Graduate Research Assistant</p>
+          <h3 class="research-title">Mesquite — Wearable Motion Capture Platform</h3>
+          <p class="research-org">Arizona State University</p>
+          <p class="research-desc">Open-source, low-cost wearable motion-capture system using 15 ESP32-C3–powered IMU sensor pods on FreeRTOS to stream orientation data wirelessly. A Raspberry Pi Zero W hub synchronizes quaternions with a smartphone's WebXR SLAM world frame, rendering a real-time 3D skeleton in any WebSerial-compatible browser via Three.js.</p>
+          <a class="card-link" href="https://sites.google.com/asu.edu/darshptl/research/graduate-research-assistant" target="_blank" rel="noopener">
+            Read More
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <img class="research-img" src="https://lh3.googleusercontent.com/sitesv/APaQ0STXqZyfUw0h03jWenVMtH5lUBzDMg4KGvn0jkXYZ1EtH2VmpTLcpsuNZgm5d8BWxTkEzGvN4HbVsobwpORZVg2k3uCnsUsKHjdiEuTTzP6uqK0h_aA5OkSUCpICCxU7w8XwJckrCveTAbTLlvWZ7gE4XyZUGV2meBbeU0wy299nqhaOBz36EjQJBbGfRL-Z4MZj81Uaz74F2geOkavXj3WiYlDiFa6mP_fatU0=w400" alt="Project Assistant" onerror="this.style.display='none'" />
+        <div class="research-body">
+          <p class="research-type">Project Assistant</p>
+          <h3 class="research-title">Scenario-Based AV Simulation Testing</h3>
+          <p class="research-org">Dr. Jeffery Wishart · Arizona State University</p>
+          <p class="research-desc">Implemented all 37 NHTSA pre-crash test cases in CARLA simulator — covering ~97% of light-duty vehicle crashes. Scenarios defined via CARLA's Python API, instantiating traffic actors, environmental conditions, and sensor models for high-fidelity real-world emulation.</p>
+          <a class="card-link" href="https://sites.google.com/asu.edu/darshptl/research/project-assistant" target="_blank" rel="noopener">
+            Read More
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <img class="research-img" src="https://lh3.googleusercontent.com/sitesv/APaQ0SQ7o-vnyOukeSSg_4kPkR7Tr3jKDpeYwL3e1okIdZAELj52fFBvLNHIkdmS-biFSCziaRYopEWkFBrWdg9xbzy35qbSMZHIB6BGsyh_7s8bwF1Bkom7_Fnc895BhJqdmj9ADczQiYCgY02IvozKVwp4DUlVKx8lOardL-FAqRZm1pZtsmOz7kgiwDik4gu365tQ-IDdQAjbFLYt3DBA8h9OWuWcR5XBFMBDRx0=w400" alt="Publication" onerror="this.style.display='none'" />
+        <div class="research-body">
+          <p class="research-type">Publication · Springer</p>
+          <h3 class="research-title">Implementation of Master-Slave Communication Using MQTT Protocol</h3>
+          <p class="research-org">BITS-EEE-CON 2022 · Lecture Notes in Networks and Systems, vol 641</p>
+          <p class="research-desc">Published in Next Generation Systems and Networks (Springer, Singapore). Editors: Bansal, H.O., Ajmera, P.K., Joshi, S., Bansal, R.C., Shekhar, C.</p>
+          <a class="card-link" href="https://link.springer.com/chapter/10.1007/978-981-99-0483-9_2" target="_blank" rel="noopener">
+            View Publication
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div id="contact-section">
+      <div class="section-header" style="text-align:center;">
+        <div class="section-label" style="justify-content:center;">Say Hello</div>
+        <h2 class="section-title">Get In Touch</h2>
+      </div>
+      <div class="contact-card">
+        <p>Let's connect and work together!</p>
+        <p class="location">📍 Tempe, AZ 85282</p>
+        <div class="contact-links">
+          <a class="social-btn" href="mailto:darshp1406@gmail.com">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            darshp1406@gmail.com
+          </a>
+          <a class="social-btn" href="https://github.com/darsh1406" target="_blank" rel="noopener">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0z"/></svg>
+            GitHub
+          </a>
+          <a class="social-btn" href="https://www.linkedin.com/in/darshptl" target="_blank" rel="noopener">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46C23.21 24 24 23.23 24 22.27V1.73C24 .77 23.21 0 22.23 0z"/></svg>
+            LinkedIn
+          </a>
+          <a class="social-btn" href="https://drive.google.com/file/d/1cw86tBFowneo1m89poUik94kQzxejUPr/view?usp=sharing" target="_blank" rel="noopener">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Resume
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Darsh P. Patel &nbsp;·&nbsp; Built for GitHub Pages
+  </footer>
+
+</body>
+</html>
