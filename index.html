@@ -11,14 +11,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #f8f9fa;
-      --white: #ffffff;
-      --border: #e2e8f0;
-      --text: #374151;
-      --muted: #6b7280;
-      --heading: #111827;
-      --accent: #0369a1;
-      --accent-light: #e0f2fe;
+      --bg: #ffffff;
+      --surface: #f9f9f9;
+      --border: #e5e5e5;
+      --text: #333333;
+      --muted: #777777;
+      --heading: #111111;
+      --accent: #111111;
+      --accent-light: #f3f3f3;
+      --accent-hover: #000000;
     }
 
     html { scroll-behavior: smooth; }
@@ -33,20 +34,20 @@
       min-height: 100vh;
     }
 
-    /* ── LAYOUT ── */
+    /* LAYOUT */
     .layout {
       display: flex;
       flex: 1;
-      max-width: 1200px;
+      max-width: 1180px;
       margin: 0 auto;
       width: 100%;
     }
 
-    /* ── SIDEBAR ── */
+    /* SIDEBAR */
     .sidebar {
-      width: 260px;
+      width: 255px;
       flex-shrink: 0;
-      background: var(--white);
+      background: var(--bg);
       border-right: 1px solid var(--border);
       padding: 2.5rem 1.5rem;
       position: sticky;
@@ -64,241 +65,182 @@
       height: 130px;
       border-radius: 50%;
       overflow: hidden;
-      border: 3px solid var(--border);
+      border: 2px solid var(--border);
       margin-bottom: 1rem;
-      background: var(--accent-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      background: var(--surface);
     }
     .sidebar-photo img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
+      object-position: center top;
       display: block;
     }
-    .sidebar-photo .photo-init {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
 
-    .sidebar-name { font-size: 1.1rem; font-weight: 700; color: var(--heading); margin-bottom: 0.2rem; }
-    .sidebar-tag  { font-size: 0.78rem; color: var(--muted); line-height: 1.4; margin-bottom: 1.2rem; }
+    .sidebar-name { font-size: 1.05rem; font-weight: 700; color: var(--heading); margin-bottom: 0.2rem; }
+    .sidebar-tag  { font-size: 0.76rem; color: var(--muted); line-height: 1.5; margin-bottom: 1.2rem; }
 
     hr.sdiv { width: 100%; border: none; border-top: 1px solid var(--border); margin: 0.75rem 0; }
 
     .sidebar-meta { width: 100%; text-align: left; }
     .meta-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.55rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; color: var(--muted); margin-bottom: 0.5rem;
     }
-    .meta-item svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .meta-item svg { width: 13px; height: 13px; flex-shrink: 0; }
     .meta-item a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .meta-item a:hover { color: var(--accent); }
+    .meta-item a:hover { color: var(--heading); }
 
     .sidebar-nav { width: 100%; margin-top: 1.25rem; text-align: left; }
     .sidebar-nav a {
-      display: block;
-      padding: 0.4rem 0.7rem;
-      font-size: 0.83rem;
-      font-weight: 500;
-      color: var(--text);
-      text-decoration: none;
-      border-radius: 6px;
+      display: block; padding: 0.38rem 0.65rem;
+      font-size: 0.8rem; font-weight: 500; color: var(--text);
+      text-decoration: none; border-radius: 5px;
       transition: background 0.15s, color 0.15s;
       margin-bottom: 0.1rem;
     }
-    .sidebar-nav a:hover { background: var(--accent-light); color: var(--accent); }
+    .sidebar-nav a:hover { background: var(--accent-light); color: var(--heading); }
 
-    /* ── MAIN ── */
+    /* MAIN */
     .main { flex: 1; padding: 3rem 3rem 4rem; min-width: 0; }
 
-    /* ── SECTIONS ── */
+    /* SECTIONS */
     .section { margin-bottom: 3rem; }
     .section-title {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--heading);
-      text-transform: uppercase;
+      font-size: 0.72rem; font-weight: 700;
+      color: var(--heading); text-transform: uppercase;
       letter-spacing: 0.1em;
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 0.35rem;
-      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--heading);
+      padding-bottom: 0.35rem; margin-bottom: 1.5rem;
       display: inline-block;
     }
 
-    /* ── ABOUT ── */
+    /* ABOUT */
     .about-text p { margin-bottom: 0.8rem; font-size: 0.92rem; }
-    .about-text a { color: var(--accent); text-decoration: none; }
+    .about-text a { color: var(--heading); text-decoration: underline; text-underline-offset: 3px; }
 
-    /* ── ENTRY CARDS (experience + education) ── */
+    /* ENTRY CARDS */
     .entry-list { display: flex; flex-direction: column; gap: 0.85rem; }
     .entry {
-      display: flex;
-      gap: 1.1rem;
-      align-items: flex-start;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem 1.2rem;
+      display: flex; gap: 1.1rem; align-items: flex-start;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 0.9rem 1.1rem;
     }
     .entry-logo {
-      width: 48px; height: 48px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: var(--accent-light);
+      width: 48px; height: 48px; border-radius: 6px;
+      border: 1px solid var(--border); background: #fff;
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      font-size: 0.68rem; font-weight: 700; color: var(--accent);
-      text-align: center; line-height: 1.2;
+      flex-shrink: 0; overflow: hidden;
     }
-    .entry-org  { font-size: 0.88rem; font-weight: 700; color: var(--heading); }
-    .entry-role { font-size: 0.82rem; color: var(--text); margin-top: 0.1rem; }
-    .entry-dates{ font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
-    .entry-desc { font-size: 0.8rem; color: var(--muted); margin-top: 0.4rem; line-height: 1.55; }
-    .entry-desc a { color: var(--accent); text-decoration: none; }
+    .entry-logo img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+    .entry-logo span { font-size: 0.65rem; font-weight: 700; color: var(--muted); text-align: center; }
+    .entry-org   { font-size: 0.87rem; font-weight: 700; color: var(--heading); }
+    .entry-role  { font-size: 0.82rem; color: var(--text); margin-top: 0.1rem; }
+    .entry-dates { font-size: 0.74rem; color: var(--muted); margin-top: 0.15rem; }
+    .entry-desc  { font-size: 0.79rem; color: var(--muted); margin-top: 0.4rem; line-height: 1.55; }
+    .entry-desc a { color: var(--heading); text-decoration: underline; text-underline-offset: 2px; }
 
-    /* ── SKILLS ── */
+    /* SKILLS */
     .skills-grid { display: flex; flex-wrap: wrap; gap: 0.45rem; }
     .skill-pill {
-      font-size: 0.75rem; font-weight: 500;
+      font-size: 0.74rem; font-weight: 500;
       padding: 0.25rem 0.75rem;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      color: var(--text);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; color: var(--text);
     }
 
-    /* ── RESEARCH SECTION ── */
-    .research-list { display: flex; flex-direction: column; gap: 1rem; }
+    /* PUBLICATIONS */
+    .pub-list { display: flex; flex-direction: column; gap: 1rem; }
+    .pub-card {
+      display: flex; gap: 1.1rem; align-items: flex-start;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 0.9rem 1.1rem;
+      text-decoration: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .pub-card:hover { border-color: #999; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+    .pub-thumb {
+      width: 58px; height: 58px; border-radius: 6px;
+      border: 1px solid var(--border); background: var(--surface);
+      flex-shrink: 0; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pub-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .pub-thumb span { font-size: 0.6rem; font-weight: 700; color: var(--muted); text-align: center; padding: 4px; line-height: 1.3; }
+    .pub-label  { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem; }
+    .pub-title  { font-size: 0.86rem; font-weight: 600; color: var(--heading); line-height: 1.4; margin-bottom: 0.25rem; }
+    .pub-venue  { font-size: 0.76rem; color: var(--muted); }
 
-    /* Research Role Card */
+    /* RESEARCH */
+    .research-list { display: flex; flex-direction: column; gap: 1rem; }
     .research-role {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      display: flex;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; overflow: hidden; display: flex;
     }
     .research-role-img {
-      width: 160px;
-      flex-shrink: 0;
-      object-fit: cover;
-      background: var(--accent-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 150px; flex-shrink: 0;
+      background: var(--surface);
+      display: flex; align-items: center; justify-content: center;
     }
-    .research-role-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .research-role-img .img-placeholder {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--accent);
-      text-align: center;
-      padding: 1rem;
-      line-height: 1.4;
-    }
-    .research-role-body { flex: 1; padding: 1rem 1.25rem; }
-    .research-type  { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.25rem; }
-    .research-title { font-size: 0.92rem; font-weight: 700; color: var(--heading); line-height: 1.35; margin-bottom: 0.2rem; }
-    .research-org   { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.6rem; }
-    .research-desc  { font-size: 0.82rem; color: var(--text); line-height: 1.6; margin-bottom: 0.75rem; }
+    .research-role-img img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 6px; }
+    .research-role-img .img-ph { font-size: 0.7rem; font-weight: 600; color: var(--muted); text-align: center; padding: 1rem; }
+    .research-role-body { flex: 1; padding: 1rem 1.2rem; }
+    .research-type  { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
+    .research-title { font-size: 0.9rem; font-weight: 700; color: var(--heading); line-height: 1.3; margin-bottom: 0.2rem; }
+    .research-org   { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.6rem; }
+    .research-desc  { font-size: 0.8rem; color: var(--text); line-height: 1.6; margin-bottom: 0.75rem; }
     .read-more {
       display: inline-flex; align-items: center; gap: 0.3rem;
-      font-size: 0.78rem; font-weight: 600;
-      color: var(--accent); text-decoration: none;
-      transition: gap 0.2s;
+      font-size: 0.76rem; font-weight: 600; color: var(--heading);
+      text-decoration: none; transition: gap 0.2s;
     }
     .read-more:hover { gap: 0.5rem; }
-    .read-more svg { width: 12px; height: 12px; }
+    .read-more svg { width: 11px; height: 11px; }
 
-    /* Publication Card */
-    .pub-card {
-      display: flex;
-      gap: 1.1rem;
-      align-items: flex-start;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem 1.2rem;
-      text-decoration: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .pub-card:hover { border-color: var(--accent); box-shadow: 0 2px 12px rgba(3,105,161,0.08); }
-    .pub-thumb {
-      width: 64px; height: 64px;
-      border-radius: 6px; border: 1px solid var(--border);
-      background: var(--accent-light);
-      flex-shrink: 0;
-      object-fit: cover;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .pub-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
-    .pub-thumb .pub-init { font-size: 0.65rem; font-weight: 700; color: var(--accent); text-align: center; padding: 4px; line-height: 1.3; }
-    .pub-label  { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.25rem; }
-    .pub-title  { font-size: 0.88rem; font-weight: 600; color: var(--heading); line-height: 1.4; margin-bottom: 0.25rem; }
-    .pub-venue  { font-size: 0.78rem; color: var(--muted); }
-
-    /* ── PROJECTS ── */
+    /* PROJECTS */
     .project-list { display: flex; flex-direction: column; gap: 1rem; }
     .project-card {
-      display: flex;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      text-decoration: none;
+      display: flex; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 8px;
+      overflow: hidden; text-decoration: none;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .project-card:hover { border-color: var(--accent); box-shadow: 0 2px 12px rgba(3,105,161,0.08); }
+    .project-card:hover { border-color: #999; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
     .project-thumb {
-      width: 160px; flex-shrink: 0; height: 120px;
-      object-fit: cover;
-      background: var(--accent-light);
-      display: flex; align-items: center; justify-content: center;
+      width: 155px; flex-shrink: 0; height: 115px;
+      background: var(--surface); overflow: hidden;
     }
-    .project-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .project-thumb .thumb-placeholder {
-      font-size: 0.72rem; font-weight: 600; color: var(--accent);
-      text-align: center; padding: 0.75rem; line-height: 1.4;
+    .project-thumb img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      display: block;
+      padding: 6px;
     }
-    .project-body { flex: 1; padding: 0.9rem 1.2rem; }
-    .project-title { font-size: 0.9rem; font-weight: 700; color: var(--heading); line-height: 1.35; margin-bottom: 0.35rem; }
-    .project-desc  { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.6rem; }
+    .project-body { flex: 1; padding: 0.85rem 1.1rem; }
+    .project-title { font-size: 0.88rem; font-weight: 700; color: var(--heading); line-height: 1.3; margin-bottom: 0.35rem; }
+    .project-desc  { font-size: 0.79rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.55rem; }
     .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
     .tag {
-      font-size: 0.68rem; font-weight: 500;
-      background: var(--accent-light); color: var(--accent);
+      font-size: 0.67rem; font-weight: 500;
+      background: #eeeeee; color: #444;
       padding: 0.18rem 0.55rem; border-radius: 20px;
     }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer {
       text-align: center; padding: 1.25rem;
-      font-size: 0.76rem; color: var(--muted);
+      font-size: 0.75rem; color: var(--muted);
       border-top: 1px solid var(--border);
-      background: var(--white);
+      background: var(--bg);
     }
 
-    /* ── RESPONSIVE ── */
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       .layout { flex-direction: column; }
-      .sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--border); padding: 1.5rem; flex-direction: row; flex-wrap: wrap; gap: 1rem; align-items: flex-start; text-align: left; }
-      .sidebar-photo { width: 90px; height: 90px; }
+      .sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--border); padding: 1.5rem; }
       .main { padding: 1.5rem; }
       .research-role { flex-direction: column; }
-      .research-role-img { width: 100%; height: 140px; }
-      .project-thumb { width: 110px; height: 95px; }
+      .research-role-img { width: 100%; height: 130px; }
+      .project-thumb { width: 110px; height: 90px; }
     }
   </style>
 </head>
@@ -309,10 +251,7 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-photo">
-      <!-- Replace profile.jpg with your actual photo file -->
-      <img src="images/profile.jpg" alt="Darsh Patel"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-      <span class="photo-init" style="display:none;">DP</span>
+      <img src="images/profile.jpg" alt="Darsh Patel" />
     </div>
     <div class="sidebar-name">Darsh P. Patel</div>
     <div class="sidebar-tag">M.S. Robotics &amp; Autonomous Systems · ASU</div>
@@ -338,7 +277,7 @@
       </div>
       <div class="meta-item">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        <a href="https://drive.google.com/file/d/1cw86tBFowneo1m89poUik94kQzxejUPr/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+        <a href="images/Darsh_Robotics.pdf" target="_blank" rel="noopener">Resume</a>
       </div>
       <div class="meta-item">
         <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
@@ -350,9 +289,9 @@
 
     <nav class="sidebar-nav">
       <a href="#about">About Me</a>
-      <a href="#experience">Experience</a>
       <a href="#education">Education</a>
       <a href="#skills">Skills</a>
+      <a href="#publications">Publications</a>
       <a href="#research">Research</a>
       <a href="#projects">Projects</a>
     </nav>
@@ -370,49 +309,28 @@
       </div>
     </section>
 
-    <!-- EXPERIENCE -->
-    <section class="section" id="experience">
-      <div class="section-title">Research Experience</div>
-      <div class="entry-list">
-        <div class="entry">
-          <div class="entry-logo">ASU</div>
-          <div>
-            <div class="entry-org">Arizona State University</div>
-            <div class="entry-role">Graduate Research Assistant — Mesquite Motion Capture</div>
-            <div class="entry-dates">2023 – 2025 · Tempe, AZ</div>
-            <div class="entry-desc">Built open-source wearable motion capture using 15 ESP32-C3 IMU pods and a Raspberry Pi hub with WebXR SLAM for real-time 3D skeleton streaming. Advised by <a href="https://www.linkedin.com/in/tejaswigowda" target="_blank" rel="noopener">Dr. Tejaswi Gowda</a>.</div>
-          </div>
-        </div>
-        <div class="entry">
-          <div class="entry-logo">ASU</div>
-          <div>
-            <div class="entry-org">Arizona State University</div>
-            <div class="entry-role">Project Assistant — AV Simulation Testing</div>
-            <div class="entry-dates">2023 – 2025 · Tempe, AZ</div>
-            <div class="entry-desc">Implemented all 37 NHTSA pre-crash scenarios in CARLA simulator and developed standardized Driving Assessment metrics for AV safety validation. Advised by Dr. Jeffery Wishart.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- EDUCATION -->
     <section class="section" id="education">
       <div class="section-title">Education</div>
       <div class="entry-list">
         <div class="entry">
-          <div class="entry-logo">ASU</div>
+          <div class="entry-logo">
+            <img src="images/asu.png" alt="ASU" />
+          </div>
           <div>
             <div class="entry-org">Arizona State University</div>
             <div class="entry-role">M.S. in Robotics and Autonomous Systems</div>
-            <div class="entry-dates">2023 – 2025 · Tempe, AZ</div>
+            <div class="entry-dates">Aug 2023 – May 2025 · Tempe, AZ</div>
           </div>
         </div>
         <div class="entry">
-          <div class="entry-logo">NU</div>
+          <div class="entry-logo">
+            <img src="images/nirma.jpg" alt="Nirma University" />
+          </div>
           <div>
             <div class="entry-org">Nirma University, Ahmedabad, India</div>
             <div class="entry-role">B.Tech in Instrumentation and Control Engineering</div>
-            <div class="entry-dates">2019 – 2023</div>
+            <div class="entry-dates">Aug 2019 – May 2023</div>
           </div>
         </div>
       </div>
@@ -422,46 +340,80 @@
     <section class="section" id="skills">
       <div class="section-title">Skills</div>
       <div class="skills-grid">
-        <span class="skill-pill">Python</span><span class="skill-pill">C / C++</span>
-        <span class="skill-pill">MATLAB</span><span class="skill-pill">ROS / ROS2</span>
-        <span class="skill-pill">OpenCV</span><span class="skill-pill">PyTorch</span>
-        <span class="skill-pill">TensorFlow</span><span class="skill-pill">CARLA Simulator</span>
-        <span class="skill-pill">FreeRTOS</span><span class="skill-pill">ESP32</span>
-        <span class="skill-pill">Raspberry Pi</span><span class="skill-pill">Three.js</span>
-        <span class="skill-pill">Visual SLAM</span><span class="skill-pill">Path Planning</span>
-        <span class="skill-pill">Computer Vision</span><span class="skill-pill">Embedded Systems</span>
-        <span class="skill-pill">Multi-Robot Systems</span><span class="skill-pill">Git / GitHub</span>
-        <span class="skill-pill">Linux</span><span class="skill-pill">ArUco Markers</span>
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">C / C++</span>
+        <span class="skill-pill">MATLAB</span>
+        <span class="skill-pill">ROS / ROS2</span>
+        <span class="skill-pill">OpenCV</span>
+        <span class="skill-pill">PyTorch</span>
+        <span class="skill-pill">CARLA Simulator</span>
+        <span class="skill-pill">FreeRTOS</span>
+        <span class="skill-pill">ESP32</span>
+        <span class="skill-pill">Raspberry Pi</span>
+        <span class="skill-pill">Three.js</span>
+        <span class="skill-pill">Visual SLAM</span>
+        <span class="skill-pill">Path Planning</span>
+        <span class="skill-pill">Computer Vision</span>
+        <span class="skill-pill">Embedded Systems</span>
+        <span class="skill-pill">Multi-Robot Systems</span>
+        <span class="skill-pill">Docker</span>
+        <span class="skill-pill">Linux</span>
+        <span class="skill-pill">Git / GitHub</span>
+        <span class="skill-pill">MQTT</span>
       </div>
     </section>
 
-    <!-- RESEARCH (roles + publication combined) -->
+    <!-- PUBLICATIONS -->
+    <section class="section" id="publications">
+      <div class="section-title">Publications</div>
+      <div class="pub-list">
+
+        <a class="pub-card" href="https://arxiv.org/abs/2512.22690" target="_blank" rel="noopener">
+          <div class="pub-thumb">
+            <img src="images/mesquite-1.png" alt="Mesquite MoCap" />
+          </div>
+          <div>
+            <div class="pub-label">arXiv · 2025</div>
+            <div class="pub-title">Mesquite MoCap: Democratizing Real-Time Motion Capture with Affordable, Body-worn IoT Sensors and WebXR SLAM</div>
+            <div class="pub-venue">Poojan Vanani, Darsh Patel, et al. arXiv:2512.22690 [cs], Dec. 2025</div>
+          </div>
+        </a>
+
+        <a class="pub-card" href="https://link.springer.com/chapter/10.1007/978-981-99-0483-9_2" target="_blank" rel="noopener">
+          <div class="pub-thumb">
+            <img src="images/publication.png" alt="Springer" />
+          </div>
+          <div>
+            <div class="pub-label">Springer · BITS-EEE-CON 2022</div>
+            <div class="pub-title">Implementation of Master-Slave Communication Using MQTT Protocol</div>
+            <div class="pub-venue">Darsh Patel. In: Next Generation Systems and Networks. LNNS vol 641. Springer, Singapore.</div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
     <section class="section" id="research">
       <div class="section-title">Research</div>
       <div class="research-list">
 
-        <!-- Research Role 1 -->
         <div class="research-role">
-          <div class="research-role-img" style="min-height:130px;">
-            <img src="images/mesquite-1.png" alt="Mesquite"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div class="img-placeholder" style="display:none;">Mesquite<br/>Motion Capture</div>
+          <div class="research-role-img" style="min-height:120px;">
+            <img src="images/mesquite-1.png" alt="Mesquite" />
           </div>
           <div class="research-role-body">
             <div class="research-type">Graduate Research Assistant</div>
             <div class="research-title">Mesquite — Wearable Motion Capture Platform</div>
-            <div class="research-org">Arizona State University · Dr. Tejaswi Gowda</div>
+            <div class="research-org">Arizona State University · <a href="https://www.linkedin.com/in/tejaswigowda" target="_blank" rel="noopener">Dr. Tejaswi Gowda</a></div>
             <div class="research-desc">Open-source, low-cost system using 15 ESP32-C3 IMU pods on FreeRTOS, a Raspberry Pi hub, and WebXR SLAM to stream a real-time 3D skeleton to any browser. Benchmarked within 2–5° of OptiTrack at ~5% of the cost.</div>
             <a class="read-more" href="research-graduate.html">Read More <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
           </div>
         </div>
 
-        <!-- Research Role 2 -->
         <div class="research-role">
-          <div class="research-role-img" style="min-height:130px;">
-            <img src="images/carla-2.png" alt="CARLA"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div class="img-placeholder" style="display:none;">AV Simulation<br/>CARLA</div>
+          <div class="research-role-img" style="min-height:120px;">
+            <img src="images/carla-2.png" alt="CARLA" />
           </div>
           <div class="research-role-body">
             <div class="research-type">Project Assistant</div>
@@ -471,20 +423,6 @@
             <a class="read-more" href="research-assistant.html">Read More <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
           </div>
         </div>
-
-        <!-- Publication -->
-        <a class="pub-card" href="https://link.springer.com/chapter/10.1007/978-981-99-0483-9_2" target="_blank" rel="noopener">
-          <div class="pub-thumb">
-            <img src="images/publication.png" alt="Springer"
-              onerror="this.style.display='none'; this.parentElement.querySelector('.pub-init').style.display='flex';" />
-            <div class="pub-init" style="display:none; align-items:center; justify-content:center; width:100%; height:100%;">Springer<br/>2022</div>
-          </div>
-          <div>
-            <div class="pub-label">Publication · Springer</div>
-            <div class="pub-title">Implementation of Master-Slave Communication Using MQTT Protocol</div>
-            <div class="pub-venue">BITS-EEE-CON 2022 · Lecture Notes in Networks and Systems, vol 641 · Springer, Singapore</div>
-          </div>
-        </a>
 
       </div>
     </section>
@@ -496,22 +434,18 @@
 
         <a class="project-card" href="project-warehouse.html">
           <div class="project-thumb">
-            <img src="images/maze-1.png" alt="Warehouse"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div class="thumb-placeholder" style="display:none;">Autonomous<br/>Warehouse</div>
+            <img src="images/maze-1.png" alt="Warehouse" />
           </div>
           <div class="project-body">
             <div class="project-title">Autonomous Warehouse Management System</div>
             <div class="project-desc">Led a cross-disciplinary team to build an end-to-end autonomous warehouse system with sensor-less mobile robots. Top-10 of 9,000 teams at Flipkart Grid 3.0.</div>
-            <div class="tags"><span class="tag">ESP32</span><span class="tag">Multi-Robot</span><span class="tag">Navigation</span><span class="tag">Embedded Systems</span></div>
+            <div class="tags"><span class="tag">ESP32</span><span class="tag">Multi-Robot</span><span class="tag">MQTT</span><span class="tag">Embedded Systems</span></div>
           </div>
         </a>
 
         <a class="project-card" href="project-maze.html">
           <div class="project-thumb">
-            <img src="images/maze-1.png" alt="Maze"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div class="thumb-placeholder" style="display:none;">6DOF Maze<br/>Navigation</div>
+            <img src="images/maze-1.png" alt="Maze" />
           </div>
           <div class="project-body">
             <div class="project-title">Autonomous Maze Navigation with 6DOF Robotic Arm</div>
@@ -522,39 +456,33 @@
 
         <a class="project-card" href="project-swarm.html">
           <div class="project-thumb">
-            <img src="images/swarm-1.png" alt="Swarm"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div class="thumb-placeholder" style="display:none;">Swarm<br/>Robotics</div>
+            <img src="images/swarm-1.png" alt="Swarm" />
           </div>
           <div class="project-body">
             <div class="project-title">Dynamic Swarm Robotics for Sustaining Natural Environments</div>
-            <div class="project-desc">Fully decentralized swarm using triangular-lattice formations and multi-force interaction (cohesion, alignment, repulsion, obstacle avoidance) for robust coordinated navigation.</div>
+            <div class="project-desc">Fully decentralized swarm using triangular-lattice formations and multi-force interaction for robust coordinated navigation in complex environments.</div>
             <div class="tags"><span class="tag">MATLAB</span><span class="tag">Swarm Intelligence</span><span class="tag">Decentralized Control</span></div>
           </div>
         </a>
 
         <a class="project-card" href="project-slam.html">
           <div class="project-thumb">
-            <img src="images/slam-1.png" alt="SLAM"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div class="thumb-placeholder" style="display:none;">MASt3R<br/>SLAM</div>
+            <img src="images/slam-1.png" alt="SLAM" />
           </div>
           <div class="project-body">
             <div class="project-title">MASt3R-SLAM Loop Closure — L1 vs L2 Similarity</div>
-            <div class="project-desc">Replaced L2 loop-closure metric with Manhattan (L1) distance in MASt3R-SLAM's ASMK kernel. Benchmarked across 9 TUM RGB-D sequences — millimeter ATE parity with 25–30% runtime tradeoff.</div>
+            <div class="project-desc">Replaced L2 loop-closure metric with Manhattan (L1) in MASt3R-SLAM's ASMK kernel. Benchmarked across 9 TUM RGB-D sequences — millimeter ATE parity with 25–30% runtime tradeoff.</div>
             <div class="tags"><span class="tag">Visual SLAM</span><span class="tag">Python</span><span class="tag">Benchmarking</span></div>
           </div>
         </a>
 
         <a class="project-card" href="project-segmentation.html">
           <div class="project-thumb">
-            <img src="images/seg-1.png" alt="Segmentation"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div class="thumb-placeholder" style="display:none;">Self-Attention<br/>U-Net</div>
+            <img src="images/seg-1.png" alt="Segmentation" />
           </div>
           <div class="project-body">
             <div class="project-title">Advanced Semantic Segmentation with Self-Attention U-Net</div>
-            <div class="project-desc">U-Net with MobileNetV2 backbone and self-attention decoder trained on CityScapes for drivable-area segmentation, feeding into autonomous vehicle motion planning.</div>
+            <div class="project-desc">U-Net with MobileNetV2 backbone and self-attention decoder trained on CityScapes for drivable-area segmentation feeding into autonomous vehicle motion planning.</div>
             <div class="tags"><span class="tag">Deep Learning</span><span class="tag">PyTorch</span><span class="tag">U-Net</span><span class="tag">Autonomous Driving</span></div>
           </div>
         </a>
@@ -566,6 +494,5 @@
 </div>
 
 <footer>&copy; 2025 Darsh P. Patel &nbsp;·&nbsp; Built with GitHub Pages</footer>
-
 </body>
 </html>

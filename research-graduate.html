@@ -31,38 +31,39 @@
   <div class="detail-body">
     <p>Mesquite is an open-source, low-cost motion capture system built around a distributed network of <strong>15 wearable IMU sensor pods</strong> and a hip-worn smartphone for spatial anchoring. A Raspberry Pi Zero W serves as the central hub — aggregating orientation data from the pods, synchronizing it with the phone's <strong>WebXR SLAM world frame</strong>, and streaming the reconstructed skeleton to any WebSerial-compatible browser in real time.</p>
 
-    <div class="detail-img-grid">
-      <img src="images/mesquite-2.png" alt="System hardware" />
-      <img src="images/mesquite-3.png" alt="Skeleton visualization" />
-    </div>
+    <img class="detail-img" src="images/mesquite-2.png" alt="System hardware overview" />
 
     <h2>System Design</h2>
     <ul>
       <li><strong>Modular Hardware Design:</strong> Each pod integrates a 9-axis ICM20948 IMU with an ESP32 microcontroller running dual-core FreeRTOS. Pods sample at 1000 Hz and output fused quaternions at 100 Hz, powered by 400 mAh Li-Po batteries for 4–5 hours of continuous operation.</li>
       <li><strong>Robust Wireless Network:</strong> A dedicated Wi-Fi router connects pods, smartphone, and hub — avoiding Bluetooth congestion and enabling up to 15 sensors with &lt;15 ms end-to-end latency and 99.7% packet delivery.</li>
-      <li><strong>Web-Based Visualization &amp; Recording:</strong> A Three.js-based web interface offers real-time 3D rendering, calibration tools, and export to BVH/CSV formats, accessible on desktop or mobile without additional software.</li>
+      <li><strong>Web-Based Visualization &amp; Recording:</strong> A <a href="https://threejs.org/" target="_blank" rel="noopener">Three.js</a>-based web interface offers real-time 3D rendering, calibration tools, and export to BVH/CSV formats, accessible on desktop or mobile without additional software.</li>
     </ul>
 
-    <img class="detail-img" src="images/mesquite-4.png" alt="Benchmark comparison charts" />
-
     <h2>Performance vs OptiTrack</h2>
-    <p>Benchmarking against an <strong>OptiTrack</strong> optical system demonstrates angular accuracy within <strong>2–5°</strong> for most joints and position drift under <strong>2% over five minutes</strong>, while maintaining steady <strong>32 FPS</strong> capture. This professional-grade performance is delivered at approximately <strong>5% of the cost</strong> of commercial alternatives, confirming Mesquite's suitability for research, animation, and clinical applications.</p>
+    <p>Benchmarking against an <strong>OptiTrack</strong> optical system demonstrates angular accuracy within <strong>2–5°</strong> for most joints and position drift under <strong>2% over five minutes</strong>, while maintaining steady <strong>32 FPS</strong> capture. This professional-grade performance is delivered at approximately <strong>5% of the cost</strong> of commercial alternatives.</p>
 
-    <p>Mesquite's affordability and portability enable its use in biomechanics and rehabilitation studies, indie game animation, healthcare monitoring, sports performance analysis, and educational settings. The system's open-source design invites community extension — ranging from hand-tracking modules to cloud-based analytics — making high-fidelity motion capture broadly accessible.</p>
+    <div class="detail-img-grid">
+      <img src="images/mesquite-3.png" alt="Benchmark comparison chart" />
+      <img src="images/mesquite-4.png" alt="OptiTrack vs Mesquite comparison" />
+    </div>
+
+    <p><em>In the graphs above, the <strong>blue colour</strong> is for Mesquite and <strong>red colour</strong> is for OptiTrack.</em></p>
 
     <ul>
-      <li>In the graphs above, the <strong>blue colour</strong> is for Mesquite and <strong>red colour</strong> is for OptiTrack.</li>
+      <li>Mesquite's affordability and portability enable its use in biomechanics and rehabilitation studies, indie game animation, healthcare monitoring, sports performance analysis, and educational settings.</li>
+      <li>The system's open-source design invites community extension — ranging from hand-tracking modules to cloud-based analytics — making high-fidelity motion capture broadly accessible.</li>
       <li>This project has been approved in <a href="https://fossunited.org/c/indiafoss/2025/cfp/8o6jom3fk9" target="_blank" rel="noopener">Foundation of Open Source Software United 👉</a></li>
     </ul>
 
     <h2>Demo Video</h2>
-    <video controls style="width:100%; border-radius:8px; border:1px solid var(--border); margin: 0.5rem 0 1.5rem;">
+    <video controls>
       <source src="images/mesquite-video2.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
 
-    <p>Here the orange skeleton is the existing system OptiTrack and the blue skeleton is for Mesquite:</p>
-    <video controls style="width:100%; border-radius:8px; border:1px solid var(--border); margin: 0.5rem 0 1.5rem;">
+    <p>Here the <strong>orange skeleton</strong> is the existing system OptiTrack and the <strong>blue skeleton</strong> is Mesquite:</p>
+    <video controls>
       <source src="images/mesquite-mvot.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
