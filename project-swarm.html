@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Swarm Robotics — Darsh Patel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -10,87 +9,68 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav>
-    <a class="nav-logo" href="index.html">Darsh<span>.</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="index.html#projects">Projects</a></li>
-      <li><a href="index.html#research">Research</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
+<nav>
+  <a class="nav-logo" href="index.html">Darsh<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#research">Research</a></li>
+  </ul>
+</nav>
+<div class="detail-wrap">
+  <a class="back-link" href="index.html#projects">
+    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Back to Projects
+  </a>
+  <p class="detail-tag">Project · Multi-Agent Systems · MATLAB</p>
+  <h1 class="detail-title">Dynamic Swarm Robotics for Sustaining Natural Environments</h1>
+  <p class="detail-sub">Decentralized Control · Triangular Lattice Formation · Obstacle Avoidance</p>
+
+  <img class="detail-hero" src="images/swarm-1.png" alt="Swarm Robotics" />
+
+  <div class="detail-body">
+    <p>This project develops a swarm capable of uniform coverage and structural stability for tasks such as environmental monitoring, cleanup, and conservation — operating safely in cluttered or hazardous terrains. The goals achieved through this project are:</p>
+
+    <ul>
+      <li>Maintain a <strong>triangular lattice</strong> for precise coverage</li>
+      <li>Dynamically <strong>avoid obstacles</strong></li>
+      <li><strong>Converge reliably</strong> to target locations</li>
     </ul>
-  </nav>
 
-  <div class="detail-wrap">
-    <a class="back-link" href="index.html#projects">
-      <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-      Back to Projects
-    </a>
+    <h2>Control Strategy</h2>
+    <p>The Dynamic Swarm Robotics project implements a fully decentralised control strategy in which each robot maintains an equilateral triangular lattice while converging on a specified goal. Agents compute their motion using four local interaction forces — <strong>cohesion</strong> toward the swarm centroid, <strong>alignment</strong> toward the target, <strong>inter-robot repulsion</strong>, and <strong>obstacle avoidance</strong> — to ensure both formation stability and collision-free navigation. MATLAB-based simulations confirm that the triangular lattice persists even in cluttered environments, and that "virtual" obstacle agents enable robots to bypass barriers and seamlessly reform the lattice.</p>
 
-    <p class="detail-tag">Project · Multi-Agent Systems · MATLAB</p>
-    <h1 class="detail-title">Dynamic Swarm Robotics for Sustaining Natural Environments</h1>
-    <p class="detail-sub">Decentralized Control · Triangular Lattice Formation · Obstacle Avoidance</p>
+    <div class="detail-img-grid">
+      <img src="images/swarm-2.png" alt="Swarm simulation" />
+      <img src="images/swarm-3.png" alt="Connectivity analysis" />
+    </div>
 
-    <img class="detail-hero"
-      src="https://lh3.googleusercontent.com/sitesv/APaQ0SSviGY3xz7-_hNCxQiT3GQCa9QSg0MCyxwHYPBlbxtLc1yoICYi327DutY0-FQQlJWUI9ItG2RWoE_2CMgeBWxd37KWNhkxYg-Vq68ycI9S2VR7RVOXXz_Y7wRDqy9gZtIizMMSGZZxHjYnUHI3i_n3sgWR2o8zVY901gUOduraS8vCnPqekoHfE1PMwDtQONXGramSlcX2CjUhabwkQMS8BMFswzb4DJP5LAo=w1280"
-      alt="Swarm Robotics"
-      onerror="this.style.display='none'"
-    />
+    <p>Performance metrics reveal robust navigation efficiency across different obstacle densities and consistently low computation latency per time step, validating the approach's scalability and real-time applicability.</p>
 
-    <div class="detail-body">
-      <p>This project develops a swarm capable of uniform coverage and structural stability for tasks such as environmental monitoring, cleanup, and conservation — operating safely in cluttered or hazardous terrains.</p>
+    <ul>
+      <li>The images show the connectivity analysis of each robot with its swarm group — indicating that at any moment each robot is connected to other members of the swarm group. The simulation is also shown here.</li>
+      <li>Project report and code are available on <a href="https://github.com/darsh1406/Dynamic-Swarm-Robotics" target="_blank" rel="noopener">GitHub</a>.</li>
+      <li>More detailed report here 👉 <a href="https://github.com/darsh1406/Dynamic-Swarm-Robotics/blob/main/report/MAE%20598%20Project%20report.pdf" target="_blank" rel="noopener">Link</a></li>
+    </ul>
 
-      <h2>Goals Achieved</h2>
-      <ul>
-        <li>Maintain a <strong>triangular lattice</strong> for precise, uniform area coverage</li>
-        <li>Dynamically <strong>avoid obstacles</strong> without breaking formation</li>
-        <li><strong>Converge reliably</strong> to target locations across varying environments</li>
-      </ul>
+    <h2>Simulation Video</h2>
+    <video controls style="width:100%; border-radius:8px; border:1px solid var(--border); margin: 1rem 0;">
+      <source src="images/swarm-video.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
 
-      <h2>Control Strategy</h2>
-      <p>Each robot uses a fully decentralized control strategy, computing its motion using four local interaction forces:</p>
-      <ul>
-        <li><strong>Cohesion</strong> — pulls toward the swarm centroid to maintain formation</li>
-        <li><strong>Alignment</strong> — steers toward the target destination</li>
-        <li><strong>Inter-robot Repulsion</strong> — prevents collisions within the swarm</li>
-        <li><strong>Obstacle Avoidance</strong> — "virtual" obstacle agents enable robots to bypass barriers and seamlessly reform the lattice</li>
-      </ul>
-
-      <div class="detail-img-grid">
-        <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SQe-wS325M7_TL2Kilty1hKjV3bDT3FTURES6spxL-e_LjoUItP7r8Bqo4PZRH02jzKrSs-3c_9U6rfZgLuW1abdHHDEIRzdVxXnxH3ios_5251it1w2KTMnQA2we0vEU3LgnvX8CA_L0q91KcEh4FnrU49U_12VKVpObiG40bnyiZ0Vf2eIjyCwJO-USdMlYxvG_VoWkvu_A0w1mLn1O6__ds3HZu89FgUxgk=w800" alt="Swarm simulation 1" onerror="this.style.display='none'" />
-        <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SRuK4A0Ne60aKYl9Ey496MSLQzY_UK_2EUZpeP07Ss-7642s_YP8_PS3-cywB0ogx3ETM8nOBUzbN9s1yzU_bAcjHwfJJA3qHt1rBq9Q8Hlko5vm1RgE4jFYcjpOLDd_kfVyY0-C8rnTIkC7MXjXu_qPXIMJBn0qcvVEAWew_9D8DK77IuzVGKERtHiUpJ6hZt0D9yKoWlpW06tCk7TCsmgX6WFI_OHKeDhtYY=w800" alt="Swarm simulation 2" onerror="this.style.display='none'" />
-      </div>
-
-      <h2>Results &amp; Performance</h2>
-      <p>MATLAB-based simulations confirm that the triangular lattice persists even in cluttered environments. Performance metrics reveal:</p>
-      <ul>
-        <li>Robust navigation efficiency across <strong>different obstacle densities</strong></li>
-        <li>Consistently <strong>low computation latency</strong> per time step</li>
-        <li>Connectivity analysis confirms each robot remains <strong>connected to other swarm members</strong> at every moment</li>
-      </ul>
-
-      <div class="detail-img-grid">
-        <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SQXteOEpvj1bN9fx-uGX41jKHZ3HQSQxREfuJgziFC_CFC-a2wiqLXAUKVKiC5g4YKC8OhPcuS83eiwNWzErnoX1n19xe0gsqbRkuEofrbf2h81C694-FYZRAfp5YRU_oJlGMYx3k-sBIVCWcO7oUkR58iAxcwYWpo-TFEF68VOxkGdxtf5yBktSIudqa7_VsP5NVfIA9jnYuYuruXmI_YRDZCDwPE14iFNjCw=w800" alt="Performance metrics" onerror="this.style.display='none'" />
-        <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SSmUy8yHJP953ICNMw2R3qPa_8kghuKVOi9yq8oqWzQjR4bhaDZja8lj2EUkVBfvm1AHbVMM_28spYTKYnU7fU-Twf0C_6ykuTnvMHJ8ZsXDv9OSGW7ATQib2_R6-KwMDPfarw6E_f_3jmeH0MZmD-FGjN0V6vQGuiOH80ioKI0cc04gJN-BdAdIQK5e_g19MDVbkbi9j9H5tFuF2bUMz0HMJVq1xThlEPvNhU=w800" alt="Connectivity analysis" onerror="this.style.display='none'" />
-      </div>
-
-      <div class="video-note">
-        <strong>📹 Dynamic Swarm Simulation video</strong> is available on the original Google Sites page.
-        <br /><a href="https://sites.google.com/asu.edu/darshptl/projects/dynamic-swarm-robotics-for-sustaining-natural-environments" target="_blank" rel="noopener" style="color: var(--accent);">View on original page →</a>
-      </div>
-
-      <div class="btn-row">
-        <a class="btn btn-primary" href="https://github.com/darsh1406/Dynamic-Swarm-Robotics" target="_blank" rel="noopener">
-          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0z"/></svg>
-          GitHub Repository
-        </a>
-        <a class="btn" href="https://github.com/darsh1406/Dynamic-Swarm-Robotics/blob/main/report/MAE%20598%20Project%20report.pdf" target="_blank" rel="noopener">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          Full Report (PDF)
-        </a>
-      </div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://github.com/darsh1406/Dynamic-Swarm-Robotics" target="_blank" rel="noopener">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0z"/></svg>
+        GitHub Repository
+      </a>
+      <a class="btn" href="https://github.com/darsh1406/Dynamic-Swarm-Robotics/blob/main/report/MAE%20598%20Project%20report.pdf" target="_blank" rel="noopener">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Full Report (PDF)
+      </a>
     </div>
   </div>
-
-  <footer>&copy; 2025 Darsh P. Patel</footer>
+</div>
+<footer>&copy; 2025 Darsh P. Patel</footer>
 </body>
 </html>

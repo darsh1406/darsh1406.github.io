@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Autonomous Warehouse — Darsh Patel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -10,51 +9,40 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav>
-    <a class="nav-logo" href="index.html">Darsh<span>.</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="index.html#projects">Projects</a></li>
-      <li><a href="index.html#research">Research</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
+<nav>
+  <a class="nav-logo" href="index.html">Darsh<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#research">Research</a></li>
+  </ul>
+</nav>
+<div class="detail-wrap">
+  <a class="back-link" href="index.html#projects">
+    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Back to Projects
+  </a>
+  <p class="detail-tag">Project · Robotics &amp; Automation</p>
+  <h1 class="detail-title">Autonomous Warehouse Management System</h1>
+  <p class="detail-sub">Top 10 of 9,000 teams · Flipkart Grid 3.0</p>
+
+  <div class="detail-body">
+    <p>I led a multidisciplinary team selected to develop a fully autonomous warehouse management system, featuring multiple sensor-less mobile robots. The solution earned a <strong>top-10 placement out of 9,000 teams</strong> nationwide at Flipkart Grid 3.0.</p>
+
+    <h2>System Overview</h2>
+    <ul>
+      <li>Each robot is built around an <strong>ESP32 microcontroller</strong> and drives stepper motors — chosen for precise, open-loop motion control instead of conventional DC motors.</li>
+      <li>Robots operate within a defined arena, autonomously <strong>identifying packages</strong>, determining correct pickup and drop-off locations, and navigating without human intervention.</li>
+      <li>A <strong>centralized navigation and communication framework</strong> monitors all robots in real time, dynamically assigning delivery tasks and coordinating movements to maximize efficiency.</li>
+      <li>After completing each delivery, robots <strong>return to the nearest loading station</strong> to await their next assignment.</li>
+      <li>In fault conditions, a remote operator can seamlessly <strong>take control of any robot</strong> to steer it clear of active operations, ensuring uninterrupted warehouse workflow.</li>
     </ul>
-  </nav>
 
-  <div class="detail-wrap">
-    <a class="back-link" href="index.html#projects">
-      <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-      Back to Projects
-    </a>
-
-    <p class="detail-tag">Project · Robotics &amp; Automation</p>
-    <h1 class="detail-title">Autonomous Warehouse Management System</h1>
-    <p class="detail-sub">Top 10 of 9,000 teams · Flipkart Grid 3.0</p>
-
-    <img class="detail-hero"
-      src="https://lh3.googleusercontent.com/sitesv/APaQ0SSUD0oEuk5X7fHuEJ7o_ZwiEQ9HKbg_ekg8Pq59y7Yq3bMm4_rWS2j7G8ZUokFnSFYOZUPZgUt4wkboZTvtEHfOy1HMsppKQArvN1V0JABuWSJoRlB3YFzsgHCHrsqZ2E6mmJked_--luiEWueXnUPB5REzGn2GlHFf8I-Llgg1_mRHOS_JfJRV_y6HQ9lrJu7QfHfqtXasPCIdiYw3tl_UTYFBsTkfZxBwkTM=w1280"
-      alt="Autonomous Warehouse Management System"
-      onerror="this.style.display='none'"
-    />
-
-    <div class="detail-body">
-      <p>I led a multidisciplinary team to develop a fully autonomous warehouse management system featuring multiple sensor-less mobile robots. The solution earned a top-10 placement out of 9,000 teams nationwide at Flipkart Grid 3.0.</p>
-
-      <h2>System Overview</h2>
-      <ul>
-        <li>Each robot is built around an <strong>ESP32 microcontroller</strong> driving stepper motors — chosen for precise, open-loop motion control over conventional DC motors.</li>
-        <li>Robots operate within a defined arena, autonomously <strong>identifying packages</strong>, determining correct pickup and drop-off locations, and navigating without human intervention.</li>
-        <li>A <strong>centralized navigation and communication framework</strong> monitors all robots in real time, dynamically assigning delivery tasks and coordinating movements to maximize efficiency.</li>
-        <li>After completing each delivery, robots <strong>return to the nearest loading station</strong> to await their next assignment.</li>
-        <li>In fault conditions, a remote operator can seamlessly <strong>take manual control</strong> of any robot to steer it clear of active operations, ensuring uninterrupted warehouse workflow.</li>
-      </ul>
-
-      <div class="video-note">
-        <strong>📹 Videos available on Google Sites:</strong> The first video shows the actual robot operations; the second demonstrates how the whole system communicates and navigates through assigned tasks.
-        <br /><a href="https://sites.google.com/asu.edu/darshptl/projects/autonomous-warehouse-management-system" target="_blank" rel="noopener" style="color: var(--accent);">View on original page →</a>
-      </div>
+    <div class="info-box">
+      <strong>📹 Videos:</strong> The first video shows the actual operations and the second shows how the whole system communicates and navigates through the given task. Upload your video files to the <code>images/</code> folder as <code>warehouse-video1.mp4</code> and <code>warehouse-video2.mp4</code> to include them here.
     </div>
   </div>
-
-  <footer>&copy; 2025 Darsh P. Patel</footer>
+</div>
+<footer>&copy; 2025 Darsh P. Patel</footer>
 </body>
 </html>

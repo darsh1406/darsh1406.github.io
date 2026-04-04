@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AV Simulation — Darsh Patel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -10,72 +9,54 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav>
-    <a class="nav-logo" href="index.html">Darsh<span>.</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="index.html#projects">Projects</a></li>
-      <li><a href="index.html#research">Research</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
+<nav>
+  <a class="nav-logo" href="index.html">Darsh<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#research">Research</a></li>
+  </ul>
+</nav>
+<div class="detail-wrap">
+  <a class="back-link" href="index.html#research">
+    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Back to Research
+  </a>
+  <p class="detail-tag">Project Assistant · Arizona State University</p>
+  <h1 class="detail-title">Scenario-Based Simulation Testing &amp; Driving Assessment Metrics</h1>
+  <p class="detail-sub">Advised by Dr. Jeffery Wishart · CARLA Simulator · NHTSA Pre-Crash Scenarios</p>
+
+  <img class="detail-hero" src="images/carla-2.png" alt="CARLA Simulator" />
+
+  <div class="detail-body">
+    <p>The Scenario-Based Simulation Testing and Driving Assessment Metrics Validation framework uses the <strong>CARLA simulator</strong> to implement all <strong>37 of NHTSA's pre-crash test cases</strong>, which account for approximately <strong>97% of light-duty vehicle crashes</strong>. Scenarios are defined via CARLA's Python API, instantiating traffic actors, environmental conditions, and sensor models to emulate real-world situations with high fidelity.</p>
+
+    <h2>My Contributions</h2>
+    <ul>
+      <li><strong>Scenario Database Development:</strong> Create a repository of NHTSA pre-crash scenarios, annotated with fidelity, relevance, and complexity scores to align with regulatory guidelines.</li>
+      <li><strong>Metric Standardization:</strong> Define and compute Driving Assessment (DA) metrics — Complexity, Relevance, Fidelity, Metric, and Severity — using the OSA methodology to provide consistent safety profiles across tests.</li>
+      <li><strong>Scenario Definition:</strong> Script each pre-crash case (e.g., rear-end, lane change) in CARLA to position vehicles, pedestrians, and environmental elements according to NHTSA specifications.</li>
+      <li><strong>Data Collection:</strong> Run multiple simulation iterations per scenario while logging vehicle states, sensor outputs, and event triggers (e.g., collision warnings) via CARLA's logging interface.</li>
+      <li><strong>Metric Computation:</strong> Calculate safety metrics — minimum clearance distance, collision incident counts, and response latency — using logged data and standardized formulas for safety assessment.</li>
     </ul>
-  </nav>
 
-  <div class="detail-wrap">
-    <a class="back-link" href="index.html#research">
-      <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-      Back to Research
-    </a>
+    <img class="detail-img" src="images/carla-1.png" alt="Safety metrics visualization" />
 
-    <p class="detail-tag">Project Assistant · Arizona State University</p>
-    <h1 class="detail-title">Scenario-Based AV Simulation Testing &amp; Safety Metrics</h1>
-    <p class="detail-sub">Advised by Dr. Jeffery Wishart · CARLA Simulator · NHTSA Pre-Crash Scenarios</p>
+    <h2>Key Safety Metrics</h2>
+    <ul>
+      <li><strong>Minimum Distance Safety Envelope (MDSE):</strong> Measures the closest distance maintained between the AV and other traffic participants during a scenario run.</li>
+      <li><strong>Operational Electronic Device Response (OEDR) Time:</strong> Captures latency from hazard detection (e.g., sudden braking of lead vehicle) to initiation of AV's corrective action.</li>
+      <li><strong>Collision Incident (CI) Count:</strong> Records the number of collisions or near-miss events per scenario iteration.</li>
+    </ul>
 
-    <img class="detail-hero"
-      src="https://lh3.googleusercontent.com/sitesv/APaQ0ST1H27IYXn03vcc4A6K7WuI_kFwq5Yso1rccIAnbpsMBZxA_aI8UN-EQfpILU5P8tpBiUyGWc5bzLGb2_MSD90poQqnfDuNnqeVnmruvTh8OQ4iMy_nRiRMTMZ3LjFAmopIiCs3eUL7kLnptgCPBY782eQt9EuxKiv9RA7T5mL4QnwVV10FwMk3Ui5O-bdhX0VUzNi1dstv1swXyoEMHpkx2VLcaeSMvxcNqRE=w1280"
-      alt="CARLA Simulator"
-      onerror="this.style.display='none'"
-    />
+    <h2>Results</h2>
+    <p>Preliminary validation shows the framework can identify safety-critical behaviors — such as insufficient clearance or excessive response latency — and quantify performance degradations as scenario complexity increases. An external assessment tool demonstrated superior, fine-grained metrics compared to baseline simulator outputs, enabling actionable insights for AV developers. By reducing reliance on real-world testing by up to <strong>97%</strong>, this methodology accelerates development cycles and enhances reproducibility in CAV safety validation.</p>
 
-    <div class="detail-body">
-      <p>This framework implements all <strong>37 NHTSA pre-crash test cases</strong> in the CARLA simulator — accounting for approximately <strong>97% of light-duty vehicle crashes</strong>. Scenarios are defined via CARLA's Python API, instantiating traffic actors, environmental conditions, and sensor models to emulate real-world situations with high fidelity.</p>
-
-      <h2>My Contributions</h2>
-      <ul>
-        <li><strong>Scenario Database Development:</strong> Created a repository of NHTSA pre-crash scenarios, annotated with fidelity, relevance, and complexity scores aligned to regulatory guidelines.</li>
-        <li><strong>Metric Standardization:</strong> Defined and computed Driving Assessment (DA) metrics — Complexity, Relevance, Fidelity, Metric, and Severity — using the OSA methodology to provide consistent safety profiles across tests.</li>
-        <li><strong>Scenario Definition:</strong> Scripted each pre-crash case (rear-end, lane change, etc.) in CARLA to position vehicles, pedestrians, and environmental elements per NHTSA specifications.</li>
-        <li><strong>Data Collection:</strong> Ran multiple simulation iterations per scenario while logging vehicle states, sensor outputs, and event triggers via CARLA's logging interface.</li>
-        <li><strong>Metric Computation:</strong> Calculated safety metrics — minimum clearance distance, collision incident counts, response latency — using standardized formulas for safety assessment.</li>
-      </ul>
-
-      <img class="detail-img"
-        src="https://lh3.googleusercontent.com/sitesv/APaQ0SST93oVggP9ln2VmdLn2DEfGJYLXp2MSQ64LXbIda059maBeOdjqfG6DOnR3sFIRsTB4SVJVQ5_VaAc9VJmb5kEsGCcuP4Ni1rVtv8w51SMngw8hTJE7SmSea0Lv81bMFuaFQxnywpcoGChgdNKI4SMLs2nEkk8w1aiINf-W0w0bgxtOscPt7ve_11VQIczJlbDC0eccke_7Gglwq5ZA0uaRY-J2gLc4w=w1280"
-        alt="Simulation screenshot"
-        onerror="this.style.display='none'"
-      />
-
-      <h2>Key Safety Metrics</h2>
-      <ul>
-        <li><strong>MDSE</strong> (Minimum Distance Safety Envelope): Measures closest distance maintained between the AV and other traffic participants.</li>
-        <li><strong>OEDR Time</strong> (Operational Electronic Device Response): Captures latency from hazard detection to initiation of AV corrective action.</li>
-        <li><strong>CI Count</strong> (Collision Incident): Records the number of collisions or near-miss events per scenario iteration.</li>
-      </ul>
-
-      <img class="detail-img"
-        src="https://lh3.googleusercontent.com/sitesv/APaQ0STJyxItBOUc1qSPEmknMI-CKRB9UO-eKuV14xJilBWNcCNF6olZJ5LxrhbzHY0juYLisaBy09ahRfKtj84lfWOLdUOkza0bc8dVoFEeVT98b5clemtWK576D7OIRlQGHzk9wO7QB9RmLgesQWIWhbV-klCRFQONhf9IU7Abfz3pqU_iDWdVKUyTfBG0stzSv22U7GWYM3TK6Blf4H4W3za8BAPLTM0S78CA=w1280"
-        alt="Metrics visualization"
-        onerror="this.style.display='none'"
-      />
-
-      <h2>Results</h2>
-      <p>Preliminary validation shows the framework can identify safety-critical behaviors — such as insufficient clearance or excessive response latency — and quantify performance degradations as scenario complexity increases. By reducing reliance on real-world testing by up to <strong>97%</strong>, this methodology accelerates development cycles and enhances reproducibility in CAV safety validation.</p>
-
-      <div class="video-note">
-        <strong>🔒 NDA Notice:</strong> Having signed a non-disclosure agreement, further proprietary details about this project cannot be shared publicly.
-      </div>
+    <div class="info-box nda">
+      <strong>🔒 NDA Notice:</strong> Having signed a non-disclosure agreement, I am unable to share further proprietary details about this project.
     </div>
   </div>
-
-  <footer>&copy; 2025 Darsh P. Patel</footer>
+</div>
+<footer>&copy; 2025 Darsh P. Patel</footer>
 </body>
 </html>
